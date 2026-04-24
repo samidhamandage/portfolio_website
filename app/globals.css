@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Custom Prompt Palette */
+    --color-bg: #0A0A08;
+    --color-surface: #111110;
+    --color-surface-2: #1A1A17;
+    --color-border: #2A2A26;
+    --color-accent: #E8D5B0;
+    --color-accent-2: #C4A882;
+    --color-text-primary: #F0EBE0;
+    --color-text-muted: #8A8578;
+    --color-highlight: #D4A853;
+    --color-danger: #C0392B;
+
+    /* Shadcn Overrides (mapping HSL from prompt) */
+    --background: 20 10% 4%;
+    --foreground: 40 30% 90%;
+    --card: 20 5% 6%;
+    --card-foreground: 40 30% 90%;
+    --popover: 20 5% 6%;
+    --popover-foreground: 40 30% 90%;
+    --primary: 40 60% 80%;
+    --primary-foreground: 20 10% 4%;
+    --secondary: 35 15% 15%;
+    --secondary-foreground: 40 30% 90%;
+    --muted: 30 10% 16%;
+    --muted-foreground: 40 10% 50%;
+    --accent: 35 15% 15%;
+    --accent-foreground: 40 30% 90%;
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 40 30% 90%;
+    --border: 30 10% 16%;
+    --input: 30 10% 16%;
+    --ring: 40 60% 70%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+  }
+  html {
+    scroll-behavior: auto; /* Required for Lenis */
+  }
+}
+
+/* Lenis smooth scrolling base styles */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Noise Overlay */
+.noise-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E");
+}
